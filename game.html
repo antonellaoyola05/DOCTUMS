@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Challenge Game</title>
+  <link rel="stylesheet" href="css/game.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Menú Principal -->
+  <section id="" style="background-image: url('assets/fondo1.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;" class="section-visible">
+
+    <!-- INICIO DE CODE MUSIC -->
+    <div class="container_music">
+      <!-- Botón para reproducir música -->
+      <button class="button_music1" id="playMusic">▶️</button>
+      <button class="button_music" id="muteButton" style="display: none;">🔊</button>
+    </div>
+    <!-- Elemento de audio -->
+    <audio id="backgroundMusic" loop>
+      <source src="music/musica_juego.mp3" type="audio/mp3">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+    <!-- FIN DE CODE MUSIC -->
+
+    <!-- INICIO DE TITULOS -->
+    <div class="container_titles">
+      <h1 class="firts_title">CHALLENGE</h1>
+      <h2 class="second_title">Doctums</h2>
+    </div>
+    <!-- FIN DE TITULOS -->
+    <br><br>
+
+    <main>
+
+      <div id="controls">
+        <button id="rollDice">&nbsp;&nbsp;&nbsp;🎲&nbsp;Lanzar Dados</button>
+        <div id="diceResult"></div>
+      </div>
+      <div id="board-container">
+        <div id="board"></div>
+      </div>
+
+
+      <button id="volverMenu">Menú</button>
+
+    </main>
+    <script>
+      const playButton = document.getElementById("playMusic");
+      const muteButton = document.getElementById("muteButton");
+      const backgroundMusic = document.getElementById("backgroundMusic");
+
+      // Estado inicial del audio
+      let isMuted = false;
+
+      // Reproducir música al hacer clic en el botón "Reproducir"
+      playButton.addEventListener("click", () => {
+        backgroundMusic.play();
+        playButton.style.display = "none"; // Ocultar el botón "Reproducir"
+        muteButton.style.display = "inline-block"; // Mostrar botón "Silenciar"
+      });
+
+      // Silenciar o activar música
+      muteButton.addEventListener("click", () => {
+        if (isMuted) {
+          backgroundMusic.muted = false;
+          muteButton.textContent = "🔊";
+          muteButton.style.backgroundColor = "#28a745";
+        } else {
+          backgroundMusic.muted = true;
+          muteButton.textContent = "🔇";
+          muteButton.style.backgroundColor = "#dc3545";
+          muteButton.style.fontSize = "1.1em";
+        }
+        isMuted = !isMuted;
+      });
+    </script>
+    <script src="js/board.js"></script>
+    <script src="js/main2.js"></script>
+
+</body>
+
+</html>
